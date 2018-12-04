@@ -1,14 +1,16 @@
 FROM debian:jessie
-
+ENV container=docker
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+        sudo \
         software-properties-common \
         systemd systemd-cron sudo curl \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
+
 RUN apt-add-repository 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main' \
     && apt-get update \
     && apt-get upgrade -y --no-install-recommends \
@@ -21,4 +23,5 @@ RUN apt-add-repository 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu trus
 # Install Ansible inventory file.
 RUN echo '[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts
 
-CMD ["/bin/systemd"]
+VOLUME ["/sys/fs/cgroup"]
+CMD ["/lib/systemd/systemd"]
