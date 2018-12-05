@@ -14,6 +14,7 @@ RUN apt-get update \
     && apt-get clean
 
 RUN apt-add-repository 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main' \
+    && apt-get update \
     && apt-get install -y ansible \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
