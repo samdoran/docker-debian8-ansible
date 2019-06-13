@@ -5,10 +5,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         apt-transport-https \
+        aptitude \
         bash \
-        sudo \
         ca-certificates \
+        python-apt \
         software-properties-common \
+        sudo \
         systemd systemd-cron sudo curl \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
