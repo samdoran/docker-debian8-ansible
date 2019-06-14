@@ -8,10 +8,14 @@ RUN apt-get update \
         aptitude \
         bash \
         ca-certificates \
+        curl \
         python-apt \
+        python-pip \
         software-properties-common \
         sudo \
-        systemd systemd-cron sudo curl \
+        sudo \
+        systemd \
+        systemd-cron \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
