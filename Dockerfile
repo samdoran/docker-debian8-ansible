@@ -28,5 +28,7 @@ RUN apt-add-repository 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu trus
     && apt-get clean \
     && touch -m -t 201701010000 /var/lib/apt/lists/
 
+RUN echo -e "localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python" > /etc/ansible/hosts
+
 VOLUME ["/sys/fs/cgroup"]
 CMD ["/lib/systemd/systemd"]
